@@ -16,16 +16,19 @@
            squashrebase = "!git squash && git fetch origin main:main && git rebase main";
            smart = "!git smartcommit && git squashrebase";
         };
+        extraConfig = {
+            pull.rebase = true;
+        };
         includes = [
             {
-                condition = "gitdir:~/Code/";
+                condition = "gitdir:~/code/";
                 contents.user = {
                     email = "recoeur@proton.me";
                     name = "Alex Gravem";
                 };
             }
             {
-                condition = "gitdir:~/Work/";
+                condition = "gitdir:~/edgee/";
                 contents.user = {
                     email = "a@edgee.cloud";
                     name = "Alex Gravem";

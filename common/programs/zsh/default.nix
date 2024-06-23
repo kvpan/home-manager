@@ -1,4 +1,7 @@
-{pkgs, ...}:
+{pkgs, config, ...}:
+let
+    link = config.lib.file.mkOutOfStoreSymlink;
+in
 {
       programs.zsh = {
         enable = true;
@@ -16,5 +19,9 @@
         '';
       };
 
-      home.file.".config/zsh/p10k.zsh".source = ./p10k.zsh;
+      home.file = {
+          ".config/zsh/p10k.zsh" = {
+            source = link "${config.home.homeDirectory}/code/nix/common/programs/zsh/p10k.zsh";
+        };
+      };
 }

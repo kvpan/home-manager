@@ -36,4 +36,4 @@ vim.keymap.set("n", "<leader>bk", ":bn | bd #<CR>", { desc = "Kill current buffe
 vim.keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
 -- COLORSCHEME
-vim.cmd("colorscheme rose-pine")
+vim.cmd("colorscheme rose-pine-main")

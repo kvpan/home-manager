@@ -4,44 +4,44 @@
   inputs = {
     nixpkgs.url 	    = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url 	= "github:nix-community/home-manager";
-    neorg.url           = "github:nvim-neorg/nixpkgs-neorg-overlay";
+    emacs-overlay.url   = "github:nix-community/emacs-overlay";
   };
 
-  outputs = { nixpkgs, home-manager, neorg, ... }@inputs:
+  outputs = { nixpkgs, home-manager, emacs-overlay, ... }@inputs:
     let
       pkgs = import nixpkgs {
-        config = { 
-            allowUnfree = true; 
-        };
+        config = { allowUnfree = true; };
         system = "x86_64-linux";
-        overlays = [ neorg.overlays.default ];
+        overlays = [ (import emacs-overlay) ];
       };
     in {
 
       homeConfigurations.alex = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
+        extraSpecialArgs = inputs;
+
         modules = [
-        ./programs/alacritty
-        ./programs/direnv
-        ./programs/git
-        ./programs/kitty
-        ./programs/nix
-        ./programs/nvim
-        ./programs/tmux
-        ./programs/zsh
+        ../common/programs/direnv
+        ../common/programs/emacs
+        ../common/programs/git
+        ../common/programs/kitty
+        ../common/programs/nix
+        ../common/programs/nvim
+        ../common/programs/zsh
         {
 
             targets.genericLinux.enable = true;
-
             programs.home-manager.enable = true;
-
             fonts.fontconfig.enable = true;
-
             home.packages = with pkgs; [ 
+                (nerdfonts.override { fonts = [ "VictorMono" "Iosevka" "D2Coding" ]; })
+
                 nixd 
-                ripgrep 
-                (nerdfonts.override { fonts = [ "VictorMono" "Iosevka" ]; })
+
+                # utils
+                ripgrep
+                fd
             ];
 
             home.username = "alex";

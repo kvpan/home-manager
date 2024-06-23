@@ -18,13 +18,12 @@
         inherit pkgs;
 
         modules = [
-        ../common/programs/alacritty
         ../common/programs/direnv
+        ../common/programs/emacs
         ../common/programs/git
         ../common/programs/kitty
         ../common/programs/nix
         ../common/programs/nvim
-        ../common/programs/tmux
         ../common/programs/zsh
         {
             programs.home-manager.enable = true;
