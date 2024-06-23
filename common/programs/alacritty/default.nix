@@ -1,9 +1,6 @@
-{pkgs, config, ...}: let
-    nixGL = import ../../nixgl.nix { inherit pkgs config; };
-in {
+{pkgs, config, ...}:  {
     programs.alacritty = {
         enable = true;
-        package = (nixGL pkgs.alacritty);
         settings = {
             window = {
                 padding.x = 10;

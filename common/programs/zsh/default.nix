@@ -12,6 +12,7 @@
           # Powerlevel10k
           source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
           test -f ~/.config/zsh/p10k.zsh && source ~/.config/zsh/p10k.zsh
+          test -f ~/.config/zsh/extras.zsh && source ~/.config/zsh/extras.zsh
         '';
       };
 
