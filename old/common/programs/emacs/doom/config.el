@@ -25,8 +25,8 @@
   :config
   (require 'org-habit)
   :custom
-  (org-directory "~/Documents/org/")
-  (org-agenda-files (directory-files-recursively "~/Documents/org/" "\\.org$"))
+  (org-directory "~/org/")
+  (org-agenda-files (directory-files-recursively "~/org/" "\\.org$"))
 
   (org-log-into-drawer t)
   (org-log-reschedule 'note)
