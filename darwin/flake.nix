@@ -18,6 +18,7 @@
       inherit pkgs;
 
       modules = [
+        ../modules/emacs
         ../modules/zsh
         {
           programs.home-manager.enable = true;
