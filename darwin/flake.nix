@@ -29,6 +29,8 @@
           home.homeDirectory = "/Users/alex";
           home.stateVersion = "24.05";
 
+          home.sessionPath = ["$HOME/.local/bin"];
+
           home.packages = with pkgs; [
             ripgrep
             (callPackage ../fonts {})
@@ -40,6 +42,7 @@
                 "IosevkaTerm"
                 "JetBrainsMono"
                 "Monoid"
+                "Overpass"
                 "VictorMono"
                 "ZedMono"
               ];

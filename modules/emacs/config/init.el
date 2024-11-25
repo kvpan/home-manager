@@ -33,19 +33,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Package initialization
-;;
-;; We'll stick to the built-in GNU and non-GNU ELPAs (Emacs Lisp Package
-;; Archive) for the base install, but there are some other ELPAs you could look
-;; at if you want more packages. MELPA in particular is very popular. See
-;; instructions at:
-;;
-;;    https://melpa.org/#/getting-started
-;;
-;; You can simply uncomment the following if you'd like to get started with
-;; MELPA packages quickly:
-;;
-;; (with-eval-after-load 'package
-;;   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
+(with-eval-after-load 'package
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 
 ;; If you want to turn off the welcome screen, uncomment this
 ;(setopt inhibit-splash-screen t)
@@ -198,9 +187,18 @@ If the new path's directories does not exist, create them."
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package emacs
-  :config
-  (load-theme 'modus-vivendi))          ; for light theme, use modus-operandi
+;; (use-package emacs
+;;   :config
+;;   (load-theme 'modus-vivendi))          ; for light theme, use modus-operandi
+
+(use-package stimmung-themes
+  :demand t
+  :ensure t
+  :config (stimmung-themes-load-light))
+
+(set-face-attribute 'default        nil :family "JetBrainsMono Nerd Font"  :height 160 :weight 'medium)
+(set-face-attribute 'fixed-pitch    nil :family "JetBrainsMono Nerd Font"  :height 160 :weight 'medium)
+(set-face-attribute 'variable-pitch nil :family "Overpass Nerd Font" :height 180 :weight 'normal)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
@@ -234,7 +232,7 @@ If the new path's directories does not exist, create them."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(which-key)))
+ '(package-selected-packages '(ligature haskell-mode which-key)))
  
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

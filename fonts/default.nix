@@ -1,4 +1,8 @@
-{stdenv, fontconfig, ...}:
+{
+  stdenv,
+  fontconfig,
+  ...
+}:
 stdenv.mkDerivation {
   name = "Programming Fonts";
   src = ./truetype;
