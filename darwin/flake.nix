@@ -18,7 +18,7 @@
       inherit pkgs;
 
       modules = [
-        ../zsh
+        ../modules/zsh
         {
           programs.home-manager.enable = true;
 
