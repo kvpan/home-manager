@@ -21,7 +21,7 @@ in
 
       home.file = {
           ".config/zsh/p10k.zsh" = {
-            source = link "${config.home.homeDirectory}/code/nix/common/programs/zsh/p10k.zsh";
+            source = link "${config.home.homeDirectory}/code/nix/zsh/p10k.zsh";
         };
       };
 }
