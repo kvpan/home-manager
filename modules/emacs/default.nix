@@ -11,9 +11,11 @@ in {
   };
 
   home.file = {
-    ".config/emacs" = {
+    ".config/emacs/early_init.el".source = link "${moduleHome}/config/early_init.el";
+    ".config/emacs/init.el".source = link "${moduleHome}/config/init.el";
+    ".config/emacs/extras" = {
       recursive = true;
-      source = link "${moduleHome}/config";
+      source = link "${moduleHome}/config/extras";
     };
   };
 }
