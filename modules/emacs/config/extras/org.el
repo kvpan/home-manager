@@ -50,7 +50,6 @@
                       (:startgroup)
                       ("home" . ?h)
                       ("work" . ?w)
-                      ("school" . ?s)
                       (:endgroup)
                       (:newline)
                       ;; scale
@@ -94,8 +93,7 @@
   (setf (cdr (assoc 'file org-link-frame-setup)) 'find-file)
 
   ;; Make exporting quotes better
-  (setq org-export-with-smart-quotes t)
-  )
+  (setq org-export-with-smart-quotes t))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
@@ -148,4 +146,50 @@
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; TODO
+;; Resize Org headings
+(dolist (face '((org-level-1 . 1.35)
+                (org-level-2 . 1.3)
+                (org-level-3 . 1.2)
+                (org-level-4 . 1.1)
+                (org-level-5 . 1.1)
+                (org-level-6 . 1.1)
+                (org-level-7 . 1.1)
+                (org-level-8 . 1.1)))
+  (set-face-attribute (car face) nil :font "Overpass Nerd Font" :weight 'bold :height (cdr face)))
+
+(use-package org
+  :hook ((org-mode-hook . variable-pitch-mode)
+         (org-mode-hook . org-indent-mode))
+  :config
+  (set-face-attribute 'org-document-title nil   :font "Overpass Nerd Font" :weight 'bold :height 1.8)
+  (set-face-attribute 'org-block nil            :foreground nil :inherit 'fixed-pitch :height 0.85)
+  (set-face-attribute 'org-code nil             :inherit '(shadow fixed-pitch) :height 0.85)
+  (set-face-attribute 'org-verbatim nil         :inherit '(shadow fixed-pitch) :height 0.85)
+  (set-face-attribute 'org-special-keyword nil  :inherit '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-meta-line nil        :inherit '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-checkbox nil         :inherit 'fixed-pitch)
+
+  (setq org-adapt-indentation t
+        org-hide-leading-stars t
+        org-pretty-entities t
+	    org-ellipsis "  ·")
+
+  (setq org-src-fontify-natively t
+	    org-src-tab-acts-natively t
+        org-edit-src-content-indentation 0))
+
+(use-package org-superstar
+  :ensure t
+  :config
+  (setq org-superstar-leading-bullet " ")
+  (setq org-superstar-headline-bullets-list '("◉" "○" "⚬" "◈" "◇"))
+  (setq org-superstar-special-todo-items t) ;; Makes TODO header bullets into boxes
+  (setq org-superstar-todo-bullet-alist '(("TODO"  . 9744)
+                                          ("WAIT"  . 9744)
+                                          ("READ"  . 9744)
+                                          ("PROG"  . 9744)
+										  ("DONE"  . 9745)))
+  :hook (org-mode . org-superstar-mode))
+
+(use-package org-roam
+  :ensure t)
